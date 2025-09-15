@@ -1,7 +1,6 @@
 # SIH
 <<<<<<< Updated upstream
 SIH project
-Hello! adarsh gandmara here.....
+Hello! adarsh here.....
 =======
-SIH project
->>>>>>> Stashed changes
+
