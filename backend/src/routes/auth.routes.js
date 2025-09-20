@@ -1,11 +1,11 @@
 import express from "express"
-import { check, signin, signout, signup } from "../controllers/auth.controller"
+import { check, signin, signout, signup } from "../controllers/auth.controller.js"
 
-const authRouter = express()
+const authRoutes = express()
 
-authRouter.post("/signup", signup)
-authRouter.post("/signin", signin)
-authRouter.post("signout", signout)
-authRouter.get("/check", check)
+authRoutes.post("/signup", signup)
+authRoutes.post("/signin", signin)
+authRoutes.post("/signout", signout)
+authRoutes.get("/check", check)
 
-export default authRouter
+export default authRoutes

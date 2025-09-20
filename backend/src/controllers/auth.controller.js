@@ -105,20 +105,45 @@ export const signin = async (req, res) => {
     });
 
     return res.status(200).json({
-        message: "Signed in successfully",
-        user: userToReturn,
-        token
+      message: "Signed in successfully",
+      user: userToReturn,
+      token,
+    });
+  } catch (error) {
+    console.log("Error in signin controller: ", error);
+    return res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+};
+
+export const signout = async (req, res) => {
+  try {
+    res.clearCookie("jwt");
+    return res.status(200).json({
+      message: "Signed out sucessfully",
+    });
+  } catch (error) {
+    console.log("Error in sign out controller", error);
+    return res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+};
+
+export const check = async (req, res) => {
+  try {
+    const userToReturn = req.user.toObject()
+    delete userToReturn.password
+
+    return res.status(200).json({
+        message: "User fetched successfully",
+        user: userToReturn
     })
   } catch (error) {
-    console.log("Error in signin controller: ", error)
+    console.log("Error in check controller", error)
     return res.status(500).json({
         message: "Internal server error"
     })
   }
 };
-
-export const signout = async (req, res) => {
-    
-};
-
-export const check = async (req, res) => {};
