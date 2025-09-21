@@ -18,20 +18,19 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      length: 8,
+      minlength: 8,
       required: true,
     },
     role: {
       type: String,
       enum: ["student", "teacher", "admin", "superadmin"],
       required: true,
+      default: "student",
     },
     institution: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Institution",
-      required: function () {
-        return this.role !== "superadmin";
-      },
+      required: false
     },
   },
   { timestamps: true }
