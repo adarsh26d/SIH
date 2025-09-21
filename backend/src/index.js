@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes.js";
 import { connectDB } from "./utils/db.js";
 import institutionRouter from "./routes/institution.routes.js";
+import assign_admin_router from "./routes/assignadmin.routes.js";
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
@@ -14,6 +15,7 @@ app.use(cookieParser());
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/institution", institutionRouter)
+app.use("/app/v1", assign_admin_router)
 
 app.get("/", (req, res) => {
   res.send("Welcome to homepage");

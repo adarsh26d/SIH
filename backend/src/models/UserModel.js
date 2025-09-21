@@ -23,14 +23,14 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["student", "teacher", "admin"],
+      enum: ["student", "teacher", "admin", "superadmin"],
       required: true,
     },
     institution: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Institution",
       required: function () {
-        return this.role !== "admin";
+        return this.role !== "superadmin";
       },
     },
   },

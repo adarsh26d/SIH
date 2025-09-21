@@ -4,29 +4,36 @@ import { connectDB } from "../utils/db.js";
 
 dotenv.config();
 
-const createAdmin = async () => {
+const createSuperadmin = async () => {
   try {
     await connectDB();
 
-    const adminExists = await User.findOne({ email: "admin@example.com" });
-    if (adminExists) {
-      console.log("✅ Admin already exists");
+    const superadminExists = await User.findOne({ email: "superadmin@example.com" });
+    if (superadminExists) {
+      console.log("✅ Superadmin already exists:", superadminExists.email);
       process.exit(0);
     }
 
-    const admin = await User.create({
+    const superadmin = await User.create({
       name: "Super Admin",
-      email: "admin@example.com",
-      password: "Admin@123",
-      role: "admin",
+      email: "superadmin@example.com",
+      password: "SuperAdmin@123", 
+      role: "superadmin",
     });
 
-    console.log("🎉 Admin created:", admin);
+    console.log("🎉 Superadmin created successfully!");
+    console.log({
+      name: superadmin.name,
+      email: superadmin.email,
+      password: "SuperAdmin@123",
+      role: superadmin.role,
+    });
+
     process.exit(0);
   } catch (error) {
-    console.error("❌ Error creating admin:", error);
+    console.error("❌ Error creating superadmin:", error);
     process.exit(1);
   }
 };
 
-createAdmin();
+createSuperadmin();
